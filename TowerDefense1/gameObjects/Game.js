@@ -1,16 +1,16 @@
 define(
   [
-    '../../shared/Scene'
+    '../../shared/Game'
   ],
   function(
-    Scene
+    BaseGame
   ) {
 
     function Game() {
-      Scene.apply(this);
+      BaseGame.apply(this);
     }
 
-    Game.prototype = new Scene();
+    Game.prototype = new BaseGame();
 
     return Game;
 

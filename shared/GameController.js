@@ -13,6 +13,11 @@ define(
         require([viewPath + "Game"], function(View) {
           gameController._view = new View();
           gameController.element.appendChild(gameController._view.element);
+
+          game.subscribeToObjects(function(gameObjects) {
+            gameController.__loadViews(gameObjects);
+          });
+
         });
       }
     }
@@ -22,6 +27,22 @@ define(
         return this._element;
       }
     });
+
+    GameController.prototype.__loadViews = function(gameObjects) {
+      for(var i=0; i<gameObjects.length; i++) {
+        gameController.__loadView(gameObjects[i]);
+      }
+    }
+
+    GameController.prototype.__loadView = function(gameObject) {
+      var gameController = this;
+      require(
+        [this._viewPath + gameObject.type],
+        function(View) {
+          gameController._view.add(new View(gameObject));
+        }
+      );
+    }
 
 
     return GameController;
