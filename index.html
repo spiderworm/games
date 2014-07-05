@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+
+<script src="./require.js"></script>
+<script>
+
+requirejs.config({
+  shim: {
+    "external/THREE": {
+      exports: "THREE"
+    }
+  }
+});
+
+</script>
+
+</head>
+<body>
+
+<script>
+
+require(
+  [
+    './TowerDefense1'
+  ],
+  function(
+    TowerDefense1
+  ) {
+    
+    var td1 = new TowerDefense1();
+    document.body.appendChild(td1.element);
+    
+  }
+);
+
+</script>
+
+</body>
+</html>
